@@ -25,16 +25,30 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        @keyframes rainbow {
+          0% {background-position:0% 50%}
+          50% {background-position:100% 25%}
+          100% {background-position:0% 50%}
+        }
         .main {
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
         .title {
+          align-self: center;
           font-family: 'Bubblegum Sans', cursive;
           font-size: 5em;
           text-align: center;
           margin: 15px;
+          -webkit-background-clip: text;
+          color:transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+          background-size: 800% 800%;
+
+          background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+          animation: rainbow 8s ease infinite;
         }
         .shout-out {
           margin: 0;
@@ -61,6 +75,7 @@ export default function Home() {
       <style jsx global>{`
         html,
         body {
+          background-color: rgb(36,36,36);
           padding: 0;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
