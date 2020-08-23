@@ -5,34 +5,42 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>K&E</title>
+        <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="main">
-        {/* <h1 className="title">Erik <br/>+<br/> Katie <br/>+<br/> Morgan</h1> */}
+        <h1 className="title">Erik & Katie & Morgan</h1>
         <figure className="shout-out">
           <svg className="svg" viewBox="0 0 56 18">
             <text className="text" fill="white" x="0" y="15">We're</text>
           </svg>
           <svg className="svg" viewBox="0 0 56 18">
-            <text className="text" fill="white" x="0" y="15">Gettin</text>
+            <text className="text" fill="white" x="0" y="15">Gettin'</text>
           </svg>
-          <svg className="svg" viewBox="0 0 60 18">
-            <text className="text" fill="white" x="0" y="15">Married</text>
+          <svg className="svg" viewBox="0 0 70 18">
+            <text className="text" fill="white" x="0" y="15">Married!</text>
           </svg>
         </figure>
       </main>
 
       <style jsx>{`
-        @import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');
         .main {
           display: flex;
+          flex-direction: column;
           justify-content: center;
+        }
+        .title {
+          font-family: 'Bubblegum Sans', cursive;
+          font-size: 5em;
+          text-align: center;
+          margin: 15px;
         }
         .shout-out {
           margin: 0;
           display: flex;
           flex-direction: column;
+          align-self: center;
           justify-content: space-between;
           height: 133vw;
           width: 100vw;
@@ -45,8 +53,7 @@ export default function Home() {
           background-repeat: no-repeat;
           background-size: contain;
           color: white;
-          font-family: sans-serif;
-          font-weight: bold;
+          font-family: 'Permanent Marker', cursive;;
           border-radius: 30px;
         }
       `}</style>
