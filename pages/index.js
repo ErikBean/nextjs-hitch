@@ -12,14 +12,14 @@ export default function Home() {
       <main className="main">
         <h1 className="title">Erik & Katie & Morgan</h1>
         <figure className="shout-out">
-          <svg className="svg" viewBox="0 0 56 18">
-            <text className="text" fill="white" x="0" y="15">We're</text>
+          <svg viewBox="0 0 56 18">
+            <text fill="white" x="0" y="15">We're</text>
           </svg>
-          <svg className="svg" viewBox="0 0 56 18">
-            <text className="text" fill="white" x="0" y="15">Gettin'</text>
+          <svg viewBox="0 0 56 18">
+            <text fill="white" x="0" y="15">Gettin'</text>
           </svg>
-          <svg className="svg" viewBox="0 0 70 18">
-            <text className="text" fill="white" x="0" y="15">Married!</text>
+          <svg viewBox="0 0 70 18">
+            <text fill="white" x="0" y="15">Married!</text>
           </svg>
         </figure>
       </main>
@@ -51,14 +51,13 @@ export default function Home() {
           animation: rainbow 8s ease infinite;
         }
         .shout-out {
-          margin: 0;
           display: flex;
           flex-direction: column;
           align-self: center;
           justify-content: space-between;
           height: 133vw;
           width: 100vw;
-          max-width: 737px;
+          max-width: 734px;
           max-height: 979px;
           background-image: linear-gradient(
             rgba(0, 0, 0, 0.4),
@@ -66,16 +65,27 @@ export default function Home() {
           ), url('/ErikKatieMorgan.jpg');
           background-repeat: no-repeat;
           background-size: contain;
+          margin: 0 0 200px 0;
           color: white;
           font-family: 'Permanent Marker', cursive;;
-          border-radius: 30px;
+          border-radius: 10px;
+          box-shadow: 0 10px 20px 0 rgba(0,0,0,.55);
+        }
+        .shout-out:hover {
+          transform: perspective(400px) rotateY(-2deg);
+          box-shadow: 20px 10px 20px 0 rgba(0,0,0,.55);
+          background-image: linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.3)
+          ), url('/ErikKatieMorgan.jpg');
+          cursor: pointer;
         }
       `}</style>
 
       <style jsx global>{`
         html,
         body {
-          background-color: rgb(36,36,36);
+          background-color: #dedede;
           padding: 0;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
