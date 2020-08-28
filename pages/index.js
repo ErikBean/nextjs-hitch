@@ -5,11 +5,13 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>K&E</title>
-        <link
+        <style
+          rel="preload"
+          as="style"
           href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap"
-          rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <main className="main">
@@ -34,6 +36,7 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
         @keyframes rainbow {
           0% {
             background-position: 0% 50%;
@@ -56,7 +59,6 @@ export default function Home() {
           font-size: 9vw;
           text-align: center;
           margin: 15px;
-          -webkit-background-clip: text;
           color: transparent;
           -webkit-background-clip: text;
           background-clip: text;
@@ -96,10 +98,12 @@ export default function Home() {
           border-radius: 10px;
           box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.55);
         }
-        .shout-out:hover {
-          transform: perspective(400px) rotateY(-2deg);
-          box-shadow: 20px 10px 20px 0 rgba(0, 0, 0, 0.55);
-          cursor: pointer;
+        @media (hover: hover) {
+          .shout-out:hover {
+            transform: perspective(400px) rotateY(-2deg);
+            box-shadow: 20px 10px 20px 0 rgba(0, 0, 0, 0.55);
+            cursor: pointer;
+          }
         }
       `}</style>
 
