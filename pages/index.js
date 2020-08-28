@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const flipCard = () => setIsFlipped(!isFlipped);
   return (
     <div className="container">
       <Head>
@@ -14,26 +17,33 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className="main">
-        <h1 className="title">Erik & Katie & Morgan</h1>
-        <figure className="shout-out">
-          <svg viewBox="0 0 56 18">
-            <text fill="white" x="0" y="15">
-              We're
-            </text>
-          </svg>
-          <svg viewBox="0 0 56 18">
-            <text fill="white" x="0" y="15">
-              Gettin'
-            </text>
-          </svg>
-          <svg viewBox="0 0 70 18">
-            <text fill="white" x="0" y="15">
-              Married!
-            </text>
-          </svg>
-        </figure>
-      </main>
+      <h1 className="title">Erik & Katie & Morgan</h1>
+      <div className="scene-container">
+        <main className="scene" onClick={flipCard}>
+          <section className={`card ${isFlipped ? 'is-flipped' : ''}`}>
+            <figure className="shout-out card-face card-front">
+              <svg viewBox="0 0 56 18">
+                <text fill="white" x="0" y="15">
+                  We're
+                </text>
+              </svg>
+              <svg viewBox="0 0 56 18">
+                <text fill="white" x="0" y="15">
+                  Gettin'
+                </text>
+              </svg>
+              <svg viewBox="0 0 70 18">
+                <text fill="white" x="0" y="15">
+                  Married!
+                </text>
+              </svg>
+            </figure>
+            <figure className="card-face card-back">
+              <time dateTime="2021-07-17">7-17-2021</time>
+            </figure>
+          </section>
+        </main>
+      </div>
 
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
@@ -48,10 +58,50 @@ export default function Home() {
             background-position: 0% 50%;
           }
         }
-        .main {
+        .container {
+          height: 100%;
+          width: 100%;
+          padding: 0 4vw;
+        }
+        .scene-container {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+        }
+        .scene {
           display: flex;
-          flex-direction: column;
           justify-content: center;
+          height: 115vh;
+          max-height: calc(92vw * 1.34);
+          perspective: 200vw;
+        }
+        .card {
+          width: 100%;
+          height: 100%;
+          max-width: 734px;
+          max-height: 979px;
+          position: relative;
+          transition: transform 1s;
+          transform-style: preserve-3d;
+        }
+        .card.is-flipped {
+          transform: rotateY(180deg);
+        }
+        .card-face {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          backface-visibility: hidden;
+          border-radius: 10px;
+          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.55);
+        }
+        .card-front {
+          background: grey;
+        }
+        .card-back {
+          background: lavender;
+          transform: rotateY(180deg);
         }
         .title {
           align-self: center;
@@ -81,10 +131,6 @@ export default function Home() {
           flex-direction: column;
           align-self: center;
           justify-content: space-between;
-          height: 126vw;
-          width: 95vw;
-          max-width: 734px;
-          max-height: 979px;
           background-image: linear-gradient(
               rgba(0, 0, 0, 0.3),
               rgba(0, 0, 0, 0.3)
@@ -92,18 +138,9 @@ export default function Home() {
             url('/ErikKatieMorgan.jpg');
           background-repeat: no-repeat;
           background-size: contain;
-          margin: 0 0 200px 0;
+          background-position: center;
           color: white;
           font-family: 'Permanent Marker', cursive;
-          border-radius: 10px;
-          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.55);
-        }
-        @media (hover: hover) {
-          .shout-out:hover {
-            transform: perspective(400px) rotateY(-2deg);
-            box-shadow: 20px 10px 20px 0 rgba(0, 0, 0, 0.55);
-            cursor: pointer;
-          }
         }
       `}</style>
 
@@ -111,8 +148,8 @@ export default function Home() {
         html,
         body {
           background-color: #eee;
-          padding: 0;
-          margin: 0;
+          padding: 0 !important;
+          margin: 0 !important;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
