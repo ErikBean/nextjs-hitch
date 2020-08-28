@@ -3,8 +3,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [isFlipped, setIsFlipped] = useState(false);
-  const flipCard = () => {};
-  setIsFlipped(!isFlipped);
+  const flipCard = () => setIsFlipped(!isFlipped);
   return (
     <div className="container">
       <Head>
