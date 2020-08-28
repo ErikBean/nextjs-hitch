@@ -2,8 +2,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 export default function Home() {
-  const [isFlipped, setIsFlipped] = useState(true);
-  const flipCard = () => {}; // setIsFlipped(!isFlipped);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const flipCard = () => setIsFlipped(!isFlipped);
   return (
     <div className="container">
       <Head>
@@ -43,13 +43,16 @@ export default function Home() {
               </svg>
             </figure>
             <figure className="card-face card-back">
-              <h2 className="date">
-                <time dateTime="2021-07-17">7-17-2021</time>
-              </h2>
-              <img src="/calendar-medium.png" />
+              <img width="40%" src="/calendar-medium.png" />
+              <address className="addy-box">
+                <img
+                  width="100%"
+                  alt="Adeline Farms 906 Lewis River Rd, Woodland, WA 98674"
+                  src="/farms-no-bg.png"
+                />
+              </address>
               <ul className="cal-links">
                 <li className="cal-link header">Add to:</li>
-                <hr />
                 <li className="cal-link">
                   <a
                     className="link-item"
@@ -61,7 +64,7 @@ export default function Home() {
                       width="30"
                       height="30"
                     ></img>
-                    &nbsp;Google Calender
+                    &nbsp;Google Calendar
                   </a>
                 </li>
               </ul>
@@ -72,7 +75,7 @@ export default function Home() {
 
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto+Condensed:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
         @keyframes rainbow {
           0% {
             background-position: 0% 50%;
@@ -153,11 +156,12 @@ export default function Home() {
         }
         .title {
           align-self: center;
+          margin: 20px 0;
           font-family: 'Bubblegum Sans', cursive;
           font-size: 9vw;
           text-align: center;
-          margin: 15px;
           color: transparent;
+          line-height: 1.5;
           -webkit-background-clip: text;
           background-clip: text;
           background-size: 800% 800%;
@@ -174,11 +178,17 @@ export default function Home() {
           );
           animation: rainbow 8s ease infinite;
         }
-        .date {
-          display: flex;
-          justify-content: center;
-          font-size: 48px;
-          font-weight: bold;
+        .addy-box {
+          position: relative;
+        }
+        .addy-text {
+          font-size: 10px;
+          position: absolute;
+          font-family: sans-serif;
+          color: transparent;
+        }
+        .addy {
+          display: block;
         }
         .cal-links {
           display: flex;
@@ -186,7 +196,7 @@ export default function Home() {
           align-items: center;
           list-style: none;
           font-size: 28px;
-          font-family: 'Roboto Condensed', sans-serif;
+          font-family: 'Bubblegum Sans', sans-serif;
         }
         .cal-link {
           display: block;
@@ -194,11 +204,6 @@ export default function Home() {
         }
         .link-item {
           text-decoration: none;
-        }
-        .cal-link.header {
-          display: block;
-          width: 100%;
-          font-size: 36px;
         }
       `}</style>
 
