@@ -136,7 +136,7 @@ export default function Home() {
           justify-content: space-around;
           align-items: center;
           font-family: 'Parisienne', cursive;
-          color: #737373;
+          color: #4f5c72;
         }
         .shout-out {
           display: flex;
@@ -177,18 +177,6 @@ export default function Home() {
             violet
           );
           animation: rainbow 8s ease infinite;
-        }
-        .addy-box {
-          position: relative;
-        }
-        .addy-text {
-          font-size: 10px;
-          position: absolute;
-          font-family: sans-serif;
-          color: transparent;
-        }
-        .addy {
-          display: block;
         }
         .cal-links {
           display: flex;
