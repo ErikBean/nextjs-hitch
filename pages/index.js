@@ -2,8 +2,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 export default function Home() {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const flipCard = () => setIsFlipped(!isFlipped);
+  const [isFlipped, setIsFlipped] = useState(true);
+  const flipCard = () => {}; //setIsFlipped(!isFlipped);
   return (
     <div className="container">
       <Head>
@@ -39,7 +39,24 @@ export default function Home() {
               </svg>
             </figure>
             <figure className="card-face card-back">
-              <time dateTime="2021-07-17">7-17-2021</time>
+              <h2 className="date">
+                <time dateTime="2021-07-17">7-17-2021</time>
+              </h2>
+              <a
+                className="calendar-link"
+                href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  width="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z" />
+                </svg>
+                <p>Add to Calendar</p>
+              </a>
             </figure>
           </section>
         </main>
@@ -102,6 +119,25 @@ export default function Home() {
         .card-back {
           background: lavender;
           transform: rotateY(180deg);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .shout-out {
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          justify-content: space-between;
+          background-image: linear-gradient(
+              rgba(0, 0, 0, 0.3),
+              rgba(0, 0, 0, 0.3)
+            ),
+            url('/ErikKatieMorgan.jpg');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          color: white;
+          font-family: 'Permanent Marker', cursive;
         }
         .title {
           align-self: center;
@@ -126,21 +162,17 @@ export default function Home() {
           );
           animation: rainbow 8s ease infinite;
         }
-        .shout-out {
+        .date {
+          display: flex;
+          justify-content: center;
+          font-size: 48px;
+          font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        }
+        .calendar-link {
           display: flex;
           flex-direction: column;
-          align-self: center;
-          justify-content: space-between;
-          background-image: linear-gradient(
-              rgba(0, 0, 0, 0.3),
-              rgba(0, 0, 0, 0.3)
-            ),
-            url('/ErikKatieMorgan.jpg');
-          background-repeat: no-repeat;
-          background-size: contain;
-          background-position: center;
-          color: white;
-          font-family: 'Permanent Marker', cursive;
+          align-items: center;
+          text-decoration: none;
         }
       `}</style>
 
