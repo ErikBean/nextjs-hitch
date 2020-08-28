@@ -45,11 +45,9 @@ export default function Home() {
             <figure className="card-face card-back">
               <img width="40%" src="/calendar-medium.png" />
               <address className="addy-box">
-                <img
-                  width="100%"
-                  alt="Adeline Farms 906 Lewis River Rd, Woodland, WA 98674"
-                  src="/farms-no-bg.png"
-                />
+                <p className="addy">Adeline Farms</p>
+                <p className="addy">3906 Lewis River Rd,</p>
+                <p className="addy">Woodland, WA 98674</p>
               </address>
               <ul className="cal-links">
                 <li className="cal-link header">Add to:</li>
@@ -76,6 +74,11 @@ export default function Home() {
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        @font-face {
+          font-family: 'Magic Trick';
+          src: url('/magic.woff') format('woff');
+        }
+
         @keyframes rainbow {
           0% {
             background-position: 0% 50%;
@@ -135,7 +138,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
-          font-family: 'Parisienne', cursive;
+          font-family: 'Magic Trick', sans-serif;
           color: #4f5c72;
         }
         .shout-out {
@@ -178,14 +181,25 @@ export default function Home() {
           );
           animation: rainbow 8s ease infinite;
         }
+        .addy-box {
+          font-size: 28px;
+        }
         .cal-links {
           display: flex;
           flex-direction: column;
           align-items: center;
           list-style: none;
-          font-size: 28px;
-          font-family: 'Bubblegum Sans', sans-serif;
+          font-size: 20px;
         }
+        @media (min-width: 641px) {
+          .addy-box {
+            font-size: 64px;
+          }
+          .cal-links {
+            font-size: 48px;
+          }
+        }
+
         .cal-link {
           display: block;
           width: 100%;
