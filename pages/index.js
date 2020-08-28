@@ -2,8 +2,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 export default function Home() {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const flipCard = () => setIsFlipped(!isFlipped);
+  const [isFlipped, setIsFlipped] = useState(true);
+  const flipCard = () => {}; // setIsFlipped(!isFlipped);
   return (
     <div className="container">
       <Head>
@@ -12,6 +12,10 @@ export default function Home() {
           rel="preload"
           as="style"
           href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
         />
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
@@ -42,21 +46,21 @@ export default function Home() {
               <h2 className="date">
                 <time dateTime="2021-07-17">7-17-2021</time>
               </h2>
-              <a
-                className="calendar-link"
-                href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  width="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M0 0h24v24H0z" fill="none" />
-                  <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z" />
-                </svg>
-                <p>Add to Calendar</p>
-              </a>
+              <ul className="cal-links">
+                <li className="cal-link header">Add to:</li>
+                <hr />
+                <li className="cal-link">
+                  <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674">
+                    <img
+                      className="gcal-icon"
+                      src="/google-calendar-logo.svg"
+                      width="30"
+                      height="30"
+                    ></img>
+                    Google Calender
+                  </a>
+                </li>
+              </ul>
             </figure>
           </section>
         </main>
@@ -121,7 +125,9 @@ export default function Home() {
           transform: rotateY(180deg);
           display: flex;
           flex-direction: column;
+          justify-content: space-around;
           align-items: center;
+          font-family: 'Trebuchet MS', Helvetica, sans-serif;
         }
         .shout-out {
           display: flex;
@@ -166,13 +172,24 @@ export default function Home() {
           display: flex;
           justify-content: center;
           font-size: 48px;
-          font-family: 'Trebuchet MS', Helvetica, sans-serif;
+          font-weight: bold;
+          padding: 50px 0;
         }
-        .calendar-link {
+        .cal-links {
           display: flex;
           flex-direction: column;
           align-items: center;
-          text-decoration: none;
+          list-style: none;
+          font-size: 28px;
+        }
+        .cal-link {
+          display: block;
+          width: 100%;
+        }
+        .cal-link.header {
+          display: block;
+          width: 100%;
+          font-size: 36px;
         }
       `}</style>
 
@@ -180,8 +197,6 @@ export default function Home() {
         html,
         body {
           background-color: #eee;
-          padding: 0 !important;
-          margin: 0 !important;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
