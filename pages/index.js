@@ -46,18 +46,22 @@ export default function Home() {
               <h2 className="date">
                 <time dateTime="2021-07-17">7-17-2021</time>
               </h2>
+              <img src="/calendar-medium.png" />
               <ul className="cal-links">
                 <li className="cal-link header">Add to:</li>
                 <hr />
                 <li className="cal-link">
-                  <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674">
+                  <a
+                    className="link-item"
+                    href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674"
+                  >
                     <img
                       className="gcal-icon"
                       src="/google-calendar-logo.svg"
                       width="30"
                       height="30"
                     ></img>
-                    Google Calender
+                    &nbsp;Google Calender
                   </a>
                 </li>
               </ul>
@@ -68,6 +72,7 @@ export default function Home() {
 
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto+Condensed:wght@300&display=swap');
         @keyframes rainbow {
           0% {
             background-position: 0% 50%;
@@ -127,7 +132,8 @@ export default function Home() {
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
-          font-family: 'Trebuchet MS', Helvetica, sans-serif;
+          font-family: 'Parisienne', cursive;
+          color: #737373;
         }
         .shout-out {
           display: flex;
@@ -173,7 +179,6 @@ export default function Home() {
           justify-content: center;
           font-size: 48px;
           font-weight: bold;
-          padding: 50px 0;
         }
         .cal-links {
           display: flex;
@@ -181,10 +186,14 @@ export default function Home() {
           align-items: center;
           list-style: none;
           font-size: 28px;
+          font-family: 'Roboto Condensed', sans-serif;
         }
         .cal-link {
           display: block;
           width: 100%;
+        }
+        .link-item {
+          text-decoration: none;
         }
         .cal-link.header {
           display: block;
