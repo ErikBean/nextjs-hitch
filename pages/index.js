@@ -52,11 +52,16 @@ export default function Home() {
                 src="/calendar-medium.png"
               />
               <div className="map-icon">
-                <img width="30%" alt="google-maps-link" src="/map.png" />
+                <div className="icon-row"></div>
                 <a
                   className="map-link"
                   href="https://www.google.com/maps/place/Adeline+Farms/@45.9411384,-122.6311182,17z/data=!3m1!4b1!4m5!3m4!1s0x54944820e5432fcf:0xa59ec443b531507e!8m2!3d45.9411384!4d-122.6289295"
                 >
+                  <img
+                    className="map-img"
+                    alt="google-maps-link"
+                    src="/tilt-map.png"
+                  />
                   <address className="addy-box" onClick={stopClick}>
                     <span className="addy">Adeline Farms</span>
                     <span className="addy">3906 Lewis River Rd,</span>
@@ -198,21 +203,30 @@ export default function Home() {
         }
         .map-icon {
           display: flex;
+          width: 100%;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           text-decoration: none;
         }
         .map-link {
+          display: flex;
+          justify-content: space-around;
           padding-top: 15px;
           text-decoration: none;
+        }
+        .icon-row {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+        .map-img {
+          width: 30%;
+          filter: saturate(0.7);
         }
         .addy-box {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
           font-size: 24px;
         }
         .cal-links {
