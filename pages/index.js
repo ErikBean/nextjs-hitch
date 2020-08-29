@@ -3,14 +3,14 @@ import { useState } from 'react';
 if (typeof window !== 'undefined') {
   window.initMap = function initMap() {
     // The location of Uluru
-    var uluru = { lat: -25.344, lng: 131.036 };
+    const venue = { lat: 45.9411384, lng: -122.6311182 };
     // The map, centered at Uluru
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: uluru,
+    const map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: venue,
     });
     // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({ position: uluru, map: map });
+    const marker = new google.maps.Marker({ position: venue, map: map });
   };
 }
 export default function Home() {
@@ -63,12 +63,14 @@ export default function Home() {
                 width="40%"
                 src="/calendar-medium.png"
               />
-              <div id="map" />
-              <address className="addy-box" onClick={stopClick}>
-                <p className="addy">Adeline Farms</p>
-                <p className="addy">3906 Lewis River Rd,</p>
-                <p className="addy">Woodland, WA 98674</p>
-              </address>
+              <section className="addy-map">
+                <div id="map" onClick={stopClick} />
+                <address className="addy-box" onClick={stopClick}>
+                  <p className="addy">Adeline Farms</p>
+                  <p className="addy">3906 Lewis River Rd,</p>
+                  <p className="addy">Woodland, WA 98674</p>
+                </address>
+              </section>
               <ul className="cal-links" onClick={stopClick}>
                 <li className="cal-link header">Add to:</li>
                 <li className="cal-link">
@@ -205,13 +207,30 @@ export default function Home() {
           box-shadow: 0px 0px 5px 1px #435d89;
           filter: saturate(2);
         }
+        .addy-map {
+          display: flex;
+          width: 100%;
+          justify-content: space-around;
+        }
         .addy-box {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 100%;
-          font-size: 28px;
+          width: 50%;
+          font-size: 24px;
+        }
+        @media (min-width: 641px) {
+          .addy-box {
+            font-size: 48px;
+          }
+          .cal-links {
+            font-size: 48px;
+          }
+        }
+        #map {
+          width: 50%;
+          height: 200px;
         }
         .cal-links {
           width: 100%;
@@ -221,19 +240,6 @@ export default function Home() {
           align-items: center;
           list-style: none;
           font-size: 20px;
-        }
-        @media (min-width: 641px) {
-          .addy-box {
-            font-size: 64px;
-          }
-          .cal-links {
-            font-size: 48px;
-          }
-        }
-
-        #map {
-          width: 100%;
-          height: 300px;
         }
         .link-item {
           text-decoration: none;
