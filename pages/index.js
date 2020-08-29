@@ -1,18 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-if (typeof window !== 'undefined') {
-  window.initMap = function initMap() {
-    // The location of Uluru
-    const venue = { lat: 45.9411384, lng: -122.6311182 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: venue,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({ position: venue, map: map });
-  };
-}
+
 export default function Home() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [names, setNames] = useState(['Katie', 'Erik', 'Morgan']);
@@ -63,14 +51,19 @@ export default function Home() {
                 width="40%"
                 src="/calendar-medium.png"
               />
-              <section className="addy-map">
-                <div id="map" onClick={stopClick} />
-                <address className="addy-box" onClick={stopClick}>
-                  <p className="addy">Adeline Farms</p>
-                  <p className="addy">3906 Lewis River Rd,</p>
-                  <p className="addy">Woodland, WA 98674</p>
-                </address>
-              </section>
+              <div className="map-icon">
+                <img width="30%" alt="google-maps-link" src="/map.png" />
+                <a
+                  className="map-link"
+                  href="https://www.google.com/maps/place/Adeline+Farms/@45.9411384,-122.6311182,17z/data=!3m1!4b1!4m5!3m4!1s0x54944820e5432fcf:0xa59ec443b531507e!8m2!3d45.9411384!4d-122.6289295"
+                >
+                  <address className="addy-box" onClick={stopClick}>
+                    <span className="addy">Adeline Farms</span>
+                    <span className="addy">3906 Lewis River Rd,</span>
+                    <span className="addy">Woodland, WA 98674</span>
+                  </address>
+                </a>
+              </div>
               <ul className="cal-links" onClick={stopClick}>
                 <li className="cal-link header">Add to:</li>
                 <li className="cal-link">
@@ -85,10 +78,6 @@ export default function Home() {
             </figure>
           </section>
         </main>
-        <script
-          defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBybCRe9fS4GSv6GPxa44iRArio8oEfTKs&callback=initMap"
-        ></script>
       </div>
 
       <style jsx>{`
@@ -207,30 +196,24 @@ export default function Home() {
           box-shadow: 0px 0px 5px 1px #435d89;
           filter: saturate(2);
         }
-        .addy-map {
+        .map-icon {
           display: flex;
-          width: 100%;
-          justify-content: space-around;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+        }
+        .map-link {
+          padding-top: 15px;
+          text-decoration: none;
         }
         .addy-box {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 50%;
+          width: 100%;
           font-size: 24px;
-        }
-        @media (min-width: 641px) {
-          .addy-box {
-            font-size: 48px;
-          }
-          .cal-links {
-            font-size: 48px;
-          }
-        }
-        #map {
-          width: 50%;
-          height: 200px;
         }
         .cal-links {
           width: 100%;
@@ -240,6 +223,14 @@ export default function Home() {
           align-items: center;
           list-style: none;
           font-size: 20px;
+        }
+        @media (min-width: 641px) {
+          .addy-box {
+            font-size: 48px;
+          }
+          .cal-links {
+            font-size: 36px;
+          }
         }
         .link-item {
           text-decoration: none;
