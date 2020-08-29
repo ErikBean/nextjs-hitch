@@ -1,7 +1,18 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import { Map } from '../src/Map';
-
+if (typeof window !== 'undefined') {
+  window.initMap = function initMap() {
+    // The location of Uluru
+    var uluru = { lat: -25.344, lng: 131.036 };
+    // The map, centered at Uluru
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({ position: uluru, map: map });
+  };
+}
 export default function Home() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [names, setNames] = useState(['Katie', 'Erik', 'Morgan']);
@@ -15,11 +26,6 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>K&E</title>
-        <style
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Permanent+Marker&display=swap"
-        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -57,7 +63,7 @@ export default function Home() {
                 width="40%"
                 src="/calendar-medium.png"
               />
-              {/* <Map /> */}
+              <div id="map" />
               <address className="addy-box" onClick={stopClick}>
                 <p className="addy">Adeline Farms</p>
                 <p className="addy">3906 Lewis River Rd,</p>
@@ -77,6 +83,10 @@ export default function Home() {
             </figure>
           </section>
         </main>
+        <script
+          defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBybCRe9fS4GSv6GPxa44iRArio8oEfTKs&callback=initMap"
+        ></script>
       </div>
 
       <style jsx>{`
@@ -221,7 +231,9 @@ export default function Home() {
           }
         }
 
-        .cal-link {
+        #map {
+          width: 100%;
+          height: 300px;
         }
         .link-item {
           text-decoration: none;
