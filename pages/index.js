@@ -1,9 +1,16 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { Map } from '../src/Map';
 
 export default function Home() {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [names, setNames] = useState(['Katie', 'Erik', 'Morgan']);
   const flipCard = () => setIsFlipped(!isFlipped);
+  const changePlaces = () => setNames(names.slice(1).concat(names[0]));
+  const stopClick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+  };
   return (
     <div className="container">
       <Head>
@@ -21,7 +28,9 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <h1 className="title">Erik & Katie & Morgan</h1>
+      <h1 className="title" onClick={changePlaces}>
+        {names.join(' & ')}
+      </h1>
       <div className="scene-container">
         <main className="scene" onClick={flipCard}>
           <section className={`card ${isFlipped ? 'is-flipped' : ''}`}>
@@ -43,26 +52,25 @@ export default function Home() {
               </svg>
             </figure>
             <figure className="card-face card-back">
-              <img width="40%" src="/calendar-medium.png" />
-              <address className="addy-box">
+              <img
+                className="cal-image"
+                width="40%"
+                src="/calendar-medium.png"
+              />
+              {/* <Map /> */}
+              <address className="addy-box" onClick={stopClick}>
                 <p className="addy">Adeline Farms</p>
                 <p className="addy">3906 Lewis River Rd,</p>
                 <p className="addy">Woodland, WA 98674</p>
               </address>
-              <ul className="cal-links">
+              <ul className="cal-links" onClick={stopClick}>
                 <li className="cal-link header">Add to:</li>
                 <li className="cal-link">
                   <a
                     className="link-item"
                     href="http://www.google.com/calendar/event?action=TEMPLATE&text=Katie%20Erik%20Wedding&dates=20210717T200000Z/20210717T290000Z&details=Event%20Details%20TBD&location=3906%20Lewis%20River%20Rd%2C%20Woodland%2C%20WA%2098674"
                   >
-                    <img
-                      className="gcal-icon"
-                      src="/google-calendar-logo.svg"
-                      width="30"
-                      height="30"
-                    ></img>
-                    &nbsp;Google Calendar
+                    Google Calendar
                   </a>
                 </li>
               </ul>
@@ -94,6 +102,30 @@ export default function Home() {
           height: 100%;
           width: 100%;
           padding: 0 4vw;
+        }
+        .title {
+          align-self: center;
+          margin: 20px 0;
+          font-family: 'Bubblegum Sans', cursive;
+          font-size: 9vw;
+          text-align: center;
+          color: transparent;
+          line-height: 1.5;
+          -webkit-background-clip: text;
+          background-clip: text;
+          background-size: 800% 800%;
+          background-image: repeating-linear-gradient(
+            45deg,
+            violet,
+            indigo,
+            blue,
+            green,
+            yellow,
+            orange,
+            red,
+            violet
+          );
+          animation: rainbow 8s ease infinite;
         }
         .scene-container {
           height: 100%;
@@ -129,6 +161,7 @@ export default function Home() {
           box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.55);
         }
         .card-front {
+          cursor: pointer;
           background: grey;
         }
         .card-back {
@@ -139,7 +172,7 @@ export default function Home() {
           justify-content: space-around;
           align-items: center;
           font-family: 'Magic Trick', sans-serif;
-          color: #4f5c72;
+          color: #435d89;
         }
         .shout-out {
           display: flex;
@@ -157,36 +190,24 @@ export default function Home() {
           color: white;
           font-family: 'Permanent Marker', cursive;
         }
-        .title {
-          align-self: center;
-          margin: 20px 0;
-          font-family: 'Bubblegum Sans', cursive;
-          font-size: 9vw;
-          text-align: center;
-          color: transparent;
-          line-height: 1.5;
-          -webkit-background-clip: text;
-          background-clip: text;
-          background-size: 800% 800%;
-          background-image: repeating-linear-gradient(
-            45deg,
-            violet,
-            indigo,
-            blue,
-            green,
-            yellow,
-            orange,
-            red,
-            violet
-          );
-          animation: rainbow 8s ease infinite;
+        .cal-image {
+          border-radius: 999px;
+          box-shadow: 0px 0px 5px 1px #435d89;
+          filter: saturate(2);
         }
         .addy-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
           font-size: 28px;
         }
         .cal-links {
+          width: 100%;
           display: flex;
           flex-direction: column;
+          justify-content: center;
           align-items: center;
           list-style: none;
           font-size: 20px;
@@ -201,8 +222,6 @@ export default function Home() {
         }
 
         .cal-link {
-          display: block;
-          width: 100%;
         }
         .link-item {
           text-decoration: none;
